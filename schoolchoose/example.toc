@@ -1,0 +1,27 @@
+\contentsline {section}{\numberline {一、}数学模型的建立和分析}{3}{section.1}%
+\contentsline {subsection}{\numberline {1\,.\,1}假设与符号说明}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1\,.\,2}分析问题}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1\,.\,3}基础模型}{3}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1\,.\,4}建立数学模型}{4}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1\,.\,5}数据集的获取与筛选}{5}{subsection.1.5}%
+\contentsline {subsubsection}{\numberline {1\,.\,5\,.\,1}数据集的选取}{5}{subsubsection.1.5.1}%
+\contentsline {subsubsection}{\numberline {1\,.\,5\,.\,2}数据集的清洗}{6}{subsubsection.1.5.2}%
+\contentsline {subsubsection}{\numberline {1\,.\,5\,.\,3}人工检查}{6}{subsubsection.1.5.3}%
+\contentsline {subsection}{\numberline {1\,.\,6}调整模型参数}{6}{subsection.1.6}%
+\contentsline {subsection}{\numberline {1\,.\,7}代码解释}{6}{subsection.1.7}%
+\contentsline {subsection}{\numberline {1\,.\,8}分析阿肯色州COVID\_19病毒的传播情况}{7}{subsection.1.8}%
+\contentsline {subsubsection}{\numberline {1\,.\,8\,.\,1}初步分析拟合}{7}{subsubsection.1.8.1}%
+\contentsline {subsubsection}{\numberline {1\,.\,8\,.\,2}使用L-M算法进行优化}{8}{subsubsection.1.8.2}%
+\contentsline {subsubsection}{\numberline {1\,.\,8\,.\,3}指标计算补充}{9}{subsubsection.1.8.3}%
+\contentsline {subsubsection}{\numberline {1\,.\,8\,.\,4}结论总结}{9}{subsubsection.1.8.4}%
+\contentsline {section}{\numberline {二、}人类移动和聚集行为对新冠病毒传播的影响}{10}{section.2}%
+\contentsline {subsection}{\numberline {2\,.\,1}阿肯色州人群移动与聚集行为调查分析}{10}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2\,.\,2}分析现有图像推断病毒传播}{10}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2\,.\,3}结论}{12}{subsection.2.3}%
+\contentsline {section}{\numberline {三、}疫苗存在的情况下对地区疫情进行分析}{13}{section.3}%
+\contentsline {subsection}{\numberline {3\,.\,1}分析相关参数改变}{13}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3\,.\,2}分析疫情发展情况}{14}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3\,.\,3}结论}{16}{subsection.3.3}%
+\contentsline {section}{\numberline {四、}结论}{16}{section.4}%
+\contentsline {section}{参考文献}{16}{section*.15}%
+\contentsline {section}{附录 \numberline {A}完整可执行程序}{17}{appendix.a.A}%

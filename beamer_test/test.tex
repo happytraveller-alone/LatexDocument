@@ -1,0 +1,69 @@
+% !TEX program = xelatex
+\documentclass[UTF8,xcolor={svgnames}]{beamer}
+\hypersetup{bookmarksnumbered=true, colorlinks,
+	linkcolor=Red,			% color of internal links
+	urlcolor=DeepPink,		% color of external links
+	citecolor=ForestGreen	        % color of links to bibliography
+}
+% \usepackage{ctex} %中文支持 
+% There are many different themes available for Beamer. A comprehensive list with examples is given here:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\usetheme{Boadilla}
+\usecolortheme{beaver}
+
+\AtBeginSection{% Delete this, if you do not want the table of contents to pop up at the beginning of each section:
+  \begin{frame}<beamer>{Outline}
+%  	\begin{multicols}{2}
+	\tableofcontents[
+	currentsection,
+	subsectionstyle=show/show/hide	% current subsection / the section's other subsections / other sections' subsections
+	]
+%    \end{multicols}
+  \end{frame}
+}
+
+\usepackage[backend=bibtex, style=authoryear]{biblatex}
+\renewcommand*{\nameyeardelim}{\addcomma\addspace}
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+\addbibresource{(Fan)ref.bib}
+
+\begin{document}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\renewcommand{\thefootnote}{\roman{footnote})}
+\setcounter{footnote}{0}
+
+\addtobeamertemplate{frametitle}{}{%
+	\begin{textblock*}{100mm}(0.95\linewidth,-0.95cm)
+		\includegraphics[height=4ex]{pkuvi/标志（反白，在深色背景下使用）.png}	% https://vim.pku.edu.cn/
+	\end{textblock*}}
+
+\begin{frame}<beamer>{Outline}
+	%\begin{multicols}{2}
+	\tableofcontents[hideallsubsections]
+	%\end{multicols}
+\end{frame}
+
+
+
+
+
+
+\pdfbookmark[1]{References}{ref}
+\begin{frame}[allowframebreaks]{References}
+	\printbibliography[heading=none]
+\end{frame}
+
+\begin{frame}%{Thanks}
+	\Huge
+	\begin{center}
+		Thanks!
+	\end{center}
+\end{frame}
+
+\end{document}

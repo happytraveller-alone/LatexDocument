@@ -1,0 +1,48 @@
+\documentclass[UTF8]{article}
+\usepackage[UTF8]{ctex}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{amsmath}
+% \usepackage{extramarks} % Required for headers and footers
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{graphicx} % Required to insert images
+
+
+\cfoot{第\ \thepage\ 页}
+
+\large
+\title{Homework-Chapter 2}
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \line(1,0){300}\\
+        [0.65cm]
+        \huge{\bfseries Homework V }\\
+        \line(1,0){300}\\
+        \textsc{\Large Chapter IV}\\
+        \textnormal{\Large \today}\\
+        [5.5cm]
+    \end{center}
+    \begin{flushright}
+        \texttt{\Large 谢远峰\\网安一班\\3019244283}\\
+        [0.5cm]
+    \end{flushright}
+\end{titlepage}
+\clearpage
+\section*{COMPUTING AN INTERNET CHECKSUM}
+Question 1. What is the sum of these two 16 bit numbers?
+1101-1101-0100-0100
+
+Question 2. Using the sum from question 1, what is the checksum?
+0010-0010-1011-1011
+\section*{RELIABLE DATA TRANSFER: RDT 3.0}
+Transition Sequence: S0, R3, S1, S2, R0, S1, *, R1, S3, S5, S7, R2, S8
+——S2
+
+Transition Sequence:  S0, S2, R0, S3, S5, R2, *, S7, R3, S8——S6
+\section*{TCP SEQUENCE AND ACK NUMBERS WITH SEGMENT LOSS}
+Question 1. Give the sequence numbers associated with each of the 4 segments sent by the sender.——320,793,1266,1739
+
+Question 2. Give the ACK numbers the receiver sends in response to each of the segments. If a segment never arrives use 'x' to denote it.
+——793,1266,1739,2212
+\end{document}

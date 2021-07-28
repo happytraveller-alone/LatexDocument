@@ -1,0 +1,6 @@
+{
+	"editor.formatOnType": true,
+	"diffEditor.wordWrap": "on",
+	"latex-workshop.bibtex-format.tab": "4 spaces",
+	"editor.wrappingIndent": "deepIndent"
+}

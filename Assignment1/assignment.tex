@@ -1,0 +1,71 @@
+\documentclass[UTF8]{article}
+\usepackage[UTF8]{ctex}
+\usepackage[a4paper, margin=1in]{geometry}
+% \usepackage{minted}
+\usepackage{amsmath}
+% \usepackage{cite}
+\large
+\title{Homework-Chapter 1}
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \line(1,0){300}\\
+        [0.65cm]
+        \huge{\bfseries Homework I }\\
+        \line(1,0){300}\\
+        \textsc{\Large Chapter 1}\\
+        \textnormal{\Large \today}\\
+        [5.5cm]
+    \end{center}
+    \begin{flushright}
+        \texttt{\Large 谢远峰\\网安一班\\3019244283}\\
+        [0.5cm]
+    \end{flushright}
+\end{titlepage}
+
+\section*{Question 1}
+What advantage does a circuit-switched network have over a packet-switched network? \par
+电路交换的优点：通信时延小，有序传输，无排队冲突，适用范围广，实时性强，控制简单。可在段响应时间内保证定量的端到端带宽传输。\par
+What advantages does TDM have over FDM in a circuit-switched network? \par
+FDM(Frequency-Division Multiplexing,频分复用) TDM(Time-Division Multiplexing,时分复用),TDM能高效地使用网络，冲突性较低，适用于数字信号和模拟信号，构造简单，容错率较低。FDM只适用于模拟信号，需要硬件设置将信号转换为合适的频率。
+\section*{Question 2}
+\subsection*{a}
+When circuit switching is used, how many users can be supported?\par
+两个用户，每一个用户占用1Mbps的链接带宽
+\subsection*{b}
+Why will there be essentially no queuing delay before the link if two or fewer users transmit at the same time?Why will there be a queuing delay if three users transmit at the same time? \par
+每个用户传输需求为1Mbps，总带宽为2Mbps,因此两人及以下不会产生队列延迟；若有N个用户，其不发生队列时延的理想总带宽为(2N)Mbps>2Mbps,因此会发生时延。
+\subsection*{c}
+Find the probability that a given user is transmitting. ——0.2(20\%)
+\subsection*{d}
+Find the probability that at any given time, all three users are transmitting simultaneously. Find the fraction of time during which the queue grows.\par
+$(0.2)^3= 0.008 = 0.8\%$ ,队列增长的时间比率也为0.008( $0.8\%$ )
+\section*{Question 3}
+\subsection*{a}
+Express the propagation delay, dprop in terms of m and s. ——$d_{drop}=m/s(s)$
+\subsection*{b}
+Determine the transmission time of the packet, dtrans, in terms of L and R. ——$d_{tras}=L/R(s)$
+\subsection*{c}
+Ignoring processing and queuing delays, obtain an expression for the end-to-end delay. \par $d_{eToe}=d_{drop}+d_{tras}=m/s+L/R(s)$
+\subsection*{d}
+Suppose Host A begins to transmit the packet at time t = 0. At time t = dtrans, where is the last bit of the packet?——刚刚离开A
+\subsection*{e}
+Suppose dprop is greater than dtrans. At time t = dtrans, where is the first bit of the packet?——在链路上，并且尚未达到主机B
+\subsection*{f}
+Suppose dprop is less than dtrans . At time t = dtrans, where is the first bit of the packet?——已经到达主机B
+\subsection*{g}
+Suppose $s = 2.5\times 10^8$ m/s, L = 1500 bytes, and R = 10 Mbps. Find the distance m so that dprop equals dtrans.\par
+\begin{gather}
+    d_{prop} = d_{tras} \\
+    m/s = L/R \\
+    m = Ls/R = 2.5*10^{8}*1500*8/10*10^6bps = 3*10^5m
+\end{gather}
+\section*{Question 4}
+\subsection*{a}
+What is the packet inter-arrival time at the destination? That is, how much time elapses from when the last bit of the first packet arrives until the last bit of the second packet arrives?——$L/R_s$
+\subsection*{b}
+Is it possible that the second packet queues at the input queue of the second link? Explain. Now suppose that the server sends the second packet T seconds after sending the first packet. How large must T be to ensure no queuing before the second link? Explain.\par
+可能，第二个分组在第一个分组未完全输入到第二条链路前到达，P1的时间为$T_1=L/R_s+L/R_s+d_{prop}$第二个分组到达路由器的时间为$T_2=2L/R_s+d_{prop}$ \par
+使拥挤的情况不发生，即$T_2+T > T_1 \rightarrow L/R_s+T>L/R_c \rightarrow T > L/R_c-L/R_s$
+$R1 := \Pi_{maker}, model(Product \bowtie PC) $
+\end{document}

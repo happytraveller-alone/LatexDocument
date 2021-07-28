@@ -1,0 +1,23 @@
+Question 1. What advantage does a circuit-switched network have over a packet-switched network? What advantages does TDM have over FDM in a circuit-switched network?
+
+
+Question 2. Suppose users share a 2 Mbps link. Also suppose each user transmits continuously at 1Mbps when transmitting, but each user transmits only 20 percent of the time. (See the discussion of statistical multiplexing in Section 1.3 .)
+a. When circuit switching is used, how many users can be supported?
+b. For the remainder of this problem, suppose packet switching is used. Why will there be essentially no queuing delay before the link if two or fewer users transmit at the same time? Why will there be a queuing delay if three users transmit at the same time?
+c. Find the probability that a given user is transmitting.
+d. Suppose now there are three users. Find the probability that at any given time, all three users are transmitting simultaneously. Find the fraction of time during which the queue grows.
+
+
+Question 3. This elementary problem begins to explore propagation delay and transmission delay, two central concepts in data networking. Consider two hosts, A and B, connected by a single link of rate R bps. Suppose that the two hosts are separated by m meters, and suppose the propagation speed along the link is s meters/sec. Host A is to send a packet of size L bits to Host B.
+a. Express the propagation delay, dprop in terms of m and s.
+b. Determine the transmission time of the packet, dtrans, in terms of L and R.
+c. Ignoring processing and queuing delays, obtain an expression for the end-to-end delay.
+d. Suppose Host A begins to transmit the packet at time t = 0. At time t = dtrans, where is the last bit of the packet?
+e. Suppose dprop is greater than dtrans. At time t = dtrans, where is the first bit of the packet?
+f. Suppose dprop is less than dtrans . At time t = dtrans, where is the first bit of the packet?
+g. Suppose s = 2.5108 m/s, L = 1500 bytes, and R = 10 Mbps. Find the distance m so that dprop equals dtrans .
+
+
+Question 4. Consider Figure 1.19(a). Assume that we know the bottleneck link along the path from the server to the client is the first link with rate Rs bits/sec. Suppose we send a pair of packets back to back from the server to the client, and there is no other traffic on this path. Assume each packet of size L bits, and both links have the same propagation delay dprop.
+ a. What is the packet inter-arrival time at the destination? That is, how much time elapses from when the last bit of the first packet arrives until the last bit of the second packet arrives?
+b. Now assume that the second link is the bottleneck link (i.e., Rc < Rs ). Is it possible that the second packet queues at the input queue of the second link? Explain. Now suppose that the server sends the second packet T seconds after sending the first packet. How large must T be to ensure no queuing before the second link? Explain.

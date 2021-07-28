@@ -1,0 +1,415 @@
+\documentclass[UTF8,fleqn]{article}
+\usepackage[UTF8]{ctex}
+\usepackage[a3paper, margin=1in,landscape]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\usetikzlibrary{
+  arrows.meta,
+  calc,
+  fit,
+  positioning,
+  quotes
+}
+
+\pagestyle{fancy}
+\lhead{网络安全一班} % Top left header
+\chead{\hmwkClass\ \hmwkTitle} % Top center head
+\rhead{3019244283 谢远峰 } % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{第\ \thepage\ 页} % Bottom center footer
+% \rfoot{第\ \thepage\ 页} % Bottom right footer
+\newcommand{\hmwkTitle}{信息安全数学基础} % Assignment title
+\newcommand{\hmwkClass}{} % Course/class
+\large
+\title{Homework1}
+\begin{document}
+\begin{titlepage}
+	\begin{center}
+		\line(1,0){300}\\
+		[0.65cm]
+		\huge{\bfseries Homework II }\\
+		\line(1,0){300}\\
+		% \textsc{\Large Chapter 1}\\
+		\textnormal{\Large \today}\\
+		[5.5cm]
+	\end{center}
+	\begin{flushright}
+		\texttt{\Large 谢远峰\\网安一班\\3019244283}\\
+		[0.5cm]
+	\end{flushright}
+\end{titlepage}
+\clearpage
+
+% \begin{document}
+% \newpage
+% \end{document}
+% \section*{习题1}
+% 证明：如果素数p=4n+1,且d|n,则$\bigg{(}\frac{d}{p}\bigg{)}$  \\
+% \begin{align*}
+% 	\begin{split}
+% 		(d,p)=1 \rightarrow &d^{p-1}\equiv 1(mod\ p) \qquad \text{费马小定理}\\
+% 		\rightarrow &d^{4n}\equiv 1(mod\ p)\\
+% 		\rightarrow &(d^{2n})^{2}\equiv 1^2(mod\ p)\qquad \text{同余性质}\\
+% 		\rightarrow &d^{2n}\equiv 1(mod\ p)\\
+% 		\rightarrow &d^{\frac{p-1}{2}}\equiv 1(mod\ p)\qquad \text{二次剩余理论}\\
+% 	\end{split}
+% \end{align*}
+
+% \qquad d是模p的
+
+
+% \vspace{3cm}
+% \tikzstyle{startstop1} = [rectangle, rounded corners, minimum width=2.7cm, minimum height=1cm,text centered,text width=3cm, draw=black, fill=yellow!30]
+% \tikzstyle{startstop2} = [rectangle, rounded corners, minimum width=2.7cm, minimum height=1cm,text centered,text width=3cm, draw=black, fill=orange!30]
+% \tikzstyle{startstop3} = [rectangle, rounded corners, minimum width=2.7cm, minimum height=1cm,text centered,text width=3cm, draw=black, fill=red!30]
+% \tikzstyle{startstop4} = [rectangle, rounded corners, minimum width=2.7cm, minimum height=1cm,text centered,text width=3cm, draw=black, fill=green!30]
+% \tikzstyle{startstop5} = [rectangle, rounded corners, minimum width=2.7cm, minimum height=1cm,text centered,text width=3cm, draw=black, fill=brown!30]
+% % \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+% % \tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
+% % \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+% \tikzstyle{arrow} = [thick,->,>=stealth]
+% \begin{tikzpicture}[node distance=1.8cm]
+% 	\node (Susceptible) [startstop1] {Susceptible易感人群};
+% 	\node (Exposed) [startstop1, left of= Susceptible, xshift=-1.8cm] {$\beta $};
+% 	\node (Exposed) [startstop2, below of= Susceptible, yshift=-0.2cm] {Exposed\\传染人群};
+% 	\node (Infectious) [startstop3, below of=Exposed, yshift=-0.2cm] {Infectious感染人群};
+% 	\node (Rocovered) [startstop4, right of= Infectious , xshift=1.8cm] {Rocovered\\康复人群};
+% 	\node (Dead) [startstop5, below of= Infectious , yshift=-0.1cm] {Dead\\死亡人群};
+
+% 	\draw [arrow] (Susceptible) -- node[anchor=east] {$\beta$} (Exposed);
+% 	\draw [arrow] (Exposed) -- node[anchor=east] {$\sigma$} (Infectious);
+% 	\draw [arrow] (Infectious) -- node[anchor=south] {$\gamma$} (Rocovered);
+% 	\draw [arrow] (Infectious) -- node[anchor=east] {$\mu$} (Dead);
+
+% \end{tikzpicture}
+
+\makeatletter
+\tikzset{
+	meta box/.style={
+			draw,
+			black,
+			very thick,
+			text centered
+		},
+	punkt/.style={
+			meta box,
+			rectangle,
+			rounded corners,
+			inner sep=2.5pt,
+			minimum height=1em,
+			minimum width=3em,
+			align=center,
+			text width=5em
+		},
+	round box/.style={
+			meta box,
+			circle
+		},
+	every fit/.style={
+			draw,
+			thick,
+			dashed,
+			gray,
+			inner sep=10pt
+		}
+}
+
+% helper macro
+\newcommand\tikz@expand@dimen[2]{\tikzset{minimum #2=#1}}
+% tikz styles: adjust min width/height of nodes
+\tikzset{
+	add dimen/.code 2 args={%
+			\pgfkeysgetvalue{/pgf/minimum #1}\tikz@dimen@min
+			\expandafter\tikz@expand@dimen\expandafter{\tikz@dimen@min + #2 * 2em}{#1}%
+		},
+	wider/.style={add dimen={width}{#1}},
+	higher/.style={add dimen={height}{#1}},
+}
+\makeatother
+\begin{tikzpicture}[font=\LARGE, node font=\LARGE]
+	%% rectangles
+	\node[punkt, wider=1, higher=1]
+	(start) {S-E-I-R-D\\ $\beta,\sigma,\gamma,\mu$};
+	\node[punkt, below=2 of start]
+	(S) {Susceptible\\易感人群};
+	\node[punkt, below=1 of S,label=right:传染人数]
+	(beta) {$\beta = R_0\alpha$};
+	\node[round box, xshift=-4cm,below=0.9 of S,label=above:聚集率]
+	(delta) {$\delta$};
+	\node[punkt, wider=1, below=1 of beta]
+	(E) {Exposed\\传染人群};
+	\node[round box,below=1.8 of delta,label=below:接种率]
+	(theta) {$\theta$};
+	\node[round box, below=1 of E,label=right:发病率]
+	(sigma) {$\sigma$};
+	\node[punkt, below=1 of sigma]
+	(I) {Infectious\\感染人群};
+	\node[round box, xshift=3cm , below=1.5 of I,label=right:康复率]
+	(gamma) {$\gamma$};
+	\node[round box, xshift=-3cm , below=1.5 of I,label=left:死亡率]
+	(mu) {$\mu$};
+	\node[punkt, wider=1, higher=1, below=1 of gamma]
+	(R) {Recovered\\康复人群};
+	\node[punkt, wider=1, higher=1, below=3.75 of mu]
+	(D) {Dead\\死亡人群};
+
+
+	\begin{scope}[xshift=12cm]
+		\node[punkt, wider=1, higher=1]
+		(equation5) {$N = S + E + I + R + D$};
+		\node[punkt, wider=1, higher=1, below=1.5 of equation5]
+		(equation1) {$\frac{dS}{dt}= -\frac{\beta SI}{N}$};
+		\node[punkt, wider=1, higher=1, below=2.5 of equation1]
+		(equation2) {$\frac{dE}{dt}= \frac{\beta SI}{N} - \sigma E$};
+		\node[punkt, wider=1, higher=1, below=2.8 of equation2]
+		(equation3) {$\frac{dI}{dt}= \sigma E - \gamma I - \mu I$};
+		\node[punkt, wider=1, higher=1, below=3.6 of equation3]
+		(equation4) {$\frac{dR}{dt}= \gamma I$};
+		\node[punkt, wider=1, higher=1, below=0.8 of equation4]
+		(equation6) {$\frac{dD}{dt}= \mu I$};
+	\end{scope}
+
+	\begin{scope}[xshift=18cm,yshift=-1cm]
+		\node[punkt, wider=1, higher=1]
+		(init1) {$N\ = 2830000$};
+		\node[punkt, wider=1, higher=1, below=0.5 of init1]
+		(init2) {$S\ = 2839970$};
+		\node[punkt, wider=1, higher=0.8, below=0.5 of init2]
+		(init3) {$E\ =\ 10$};
+		\node[punkt, wider=1, higher=0.8, below=0.5 of init3]
+		(init4) {$I\ =\ 20$};
+		\node[punkt, wider=1, higher=0.8, below=0.5 of init4]
+		(init5) {$R\ =\ 0$};
+		\node[punkt, wider=1, higher=0.8, below=0.5 of init5]
+		(init6) {$D\ =\ 0$};
+	\end{scope}
+
+	\begin{scope}[xshift=22.5cm,yshift=-2cm]
+		\node[punkt, wider=1, higher=0.8]
+		(init7) {$\beta \ =\ 4$};
+		\node[punkt, wider=1, higher=0.8, below=0.5 of init7]
+		(init8) {$\sigma \ =\ 0.0012$};
+		\node[punkt, wider=1, higher=1, below=0.5 of init8]
+		(init9) {$\gamma \ =\ 0.006$};
+		\node[punkt, wider=1, higher=1, below=0.5 of init9]
+		(init10) {$\mu \ =\ 0.0001$};
+		\node[punkt, wider=1, higher=1, below=0.5 of init10]
+		(init11) {$days\ =\ 367$};
+	\end{scope}
+
+	\begin{scope}[xshift=18cm,yshift=-16cm]
+		\node[punkt, wider=1, higher=0.8]
+		(change1) {$\beta \ =\ 6$};
+		\node[punkt, wider=1, higher=0.8, below=0.5 of change1]
+		(change2) {$\sigma \ =\ 0.002$};
+	\end{scope}
+
+	\begin{scope}[xshift=22.5cm,yshift=-16cm]
+		\node[punkt, wider=1, higher=0.8]
+		(change4) {$\sigma \ =\ 0.0008$};
+		\node[punkt, wider=1, higher=0.8, below=0.5 of change4]
+		(change5) {$\gamma \ =\ 0.01$};
+		\node[punkt, wider=1, higher=0.8, below=0.5 of change5]
+		(change6) {$\mu \ =\ 0.00005$};
+	\end{scope}
+
+	% %% arrowed lines
+	\path[arrows={->[scale=1.1]}, thick]
+	% (E)         edge (pool)
+	(start)      edge ["input"](S)
+	(S)          edge (beta)
+	(delta)      edge (beta)
+	(theta)      edge (beta)
+	(theta)      edge (sigma)
+	(beta)       edge (E)
+	(E)          edge (sigma)
+	(sigma)      edge (I)
+	(I)          edge (mu)
+	(I)          edge (gamma)
+	(gamma)      edge (R)
+	(mu)         edge (D)
+	(start)      edge ["模型人口总和"](equation5)
+	(S)          edge ["   单日受影响人群"](equation1)
+	(E)          edge ["   单日受传染人群"](equation2)
+	(I)          edge ["单日发病人群 "](equation3)
+	(R)          edge ["单日恢复人群"](equation4)
+	(D)          edge ["单日死亡人群"](equation6);
+
+	\node[
+		fit=(S) (beta) (E) (sigma) (I) (mu) (gamma)(D)(R),
+		label={[gray, anchor=south]north west:传染病模型}] {};
+	\node[
+		fit=(equation1)(equation2)(equation3)(equation4)(equation6),
+		label={[gray, anchor=south]north :模型微分方程组}] {};
+	\node[
+		fit=(init1)(init2)(init3)(init4)(init5)(init6)(init7)
+		(init8)(init9)(init10)(init11),
+		label={[gray, anchor=south]north :初始化变量}] {};
+	\node[
+		fit=(change1)(change2),
+		label={[gray, anchor=south]north :人口聚集改变}] {};
+	\node[
+		fit=(change4)(change5)(change6),
+		label={[gray, anchor=south]north :接种改变}] {};
+\end{tikzpicture}
+
+\newpage
+\begin{tikzpicture}[font=\LARGE, node font=\LARGE]
+	%% rectangles
+	\node[punkt, wider=1, higher=1]
+	(E) {input: $E\colon (f \times k)$};
+	\node[meta box, below=2 of E]
+	(pool) {max pool};
+	\node[punkt, wider=1, below=1.5 of pool]
+	(Z) {$Z\colon (f \times 1)$};
+	\node[punkt, below=2 of Z]
+	(Z1) {$(f/r \times 1)$};
+	\node[punkt, wider=1, below=2 of Z1]
+	(A) {$A \colon (f \times 1)$};
+	\node[round box, label=right:Re-Scale, below=of A]
+	(multiply) {$\times$};
+	\node[punkt, wider=1, higher=1, below=of multiply]
+	(V) {$V \colon (f \times k)$};
+
+	\begin{scope}[xshift=8cm, yshift=-4cm]
+		\node[punkt, wider=1, higher=2.5]
+		(bilinear1) {$\forall i<j$ \\ $e_i \cdot W \odot e_j \to p_{i,j} \in R^k$};
+		\node[punkt, wider=1, higher=2.5, below=5 of bilinear1]
+		(bilinear2) {$\forall i<j$ \\ $v_i \cdot W \odot v_j \to q_{i,j} \in R^k$};
+	\end{scope}
+
+	\node[punkt, wider=1.7, right=4 of bilinear1]
+	(P) {$p$: $(n \times k)$};
+	\node[punkt, wider=1.7, right=4 of bilinear2]
+	(Q) {$q$: $(n \times k)$};
+	\node[round box, label=left:concat]
+	(add) at ($(P)!0.5!(Q)$){$+$};
+	\node[punkt, rounded corners=0pt, wider=2, higher=2.5, right=5 of add]
+	(dnn) {DNN};
+
+	%% arrowed lines
+	\path[arrows={->[scale=1.1]}, thick]
+	(E)         edge (pool)
+	(pool)      edge (Z)
+	(Z)         edge["${} \cdot W_1 \in R^{f\times f/r}$"'{right=3pt, inner sep=0pt, name=tip1}] (Z1)
+	(Z1)        edge["${} \cdot W_2 \in R^{f/r \times f}$"'{right=3pt, inner sep=0pt, name=tip2}] (A)
+	(A)         edge (multiply)
+	(multiply)  edge (V)
+	(E)         edge[bend right=90] (multiply)
+	(E)         edge (bilinear1)
+	(bilinear1) edge (P)
+	(P)         edge (add)
+	(V)         edge (bilinear2)
+	(bilinear2) edge (Q)
+	(Q)         edge (add)
+	(add)       edge["$c\colon (2n \times k)$"] (dnn)
+	(dnn.east)  edge["output"] +(3, 0);
+
+	%% frames
+	\node[
+		fit=(pool) (Z) (multiply) (tip1) ($(Z1)!-1!(tip2.east)$),
+		label={[gray, anchor=south]north west:SENET}] {};
+	\node[
+		fit=(bilinear1) (bilinear2),
+		label={[gray, anchor=south]north west:Bilinear Interaction Layer}] {};
+\end{tikzpicture}
+
+\newpage
+\vspace{2cm}
+\begin{tikzpicture}[font=\LARGE, node font=\LARGE]
+	%% rectangles
+	\node[punkt, wider=1, higher=1]
+	(start1) {Disease Decline\\$R_0 = 0$};
+	\node[meta box, below=2 of start1]
+	(patient1) {Patient 0};
+	\node[round box, below=1.5 of patient1]
+	(none) {X};
+
+	\begin{scope}[xshift=8cm]
+		\node[punkt, wider=1, higher=1]
+		(start2) {Disease Decline\\$R_0 = 1$};
+		\node[meta box, below=2 of start2]
+		(patient2) {Patient 0};
+		\node[meta box, below=1.5 of patient2]
+		(patient3) {Patient 1};
+		\node[meta box, below=1.5 of patient3]
+		(patient4) {Patient 2};
+	\end{scope}
+
+	\begin{scope}[xshift=20cm]
+		\node[punkt, wider=1, higher=1]
+		(start3) {Disease Decline\\$R_0 = 2$};
+		\node[meta box, below=2 of start3]
+		(patient1_1) {Patient 0};
+		\node[meta box,xshift = -3cm, below=1.5 of patient1_1]
+		(patient2_1) {Patient 1};
+		\node[meta box,xshift = 3cm, below=1.5 of patient1_1]
+		(patient2_2) {Patient 2};
+		\node[meta box,xshift = -1.5cm, below=1.5 of patient2_1]
+		(patient3_1) {Patient 3};
+		\node[meta box,xshift = 1.5cm, below=1.5 of patient2_1]
+		(patient3_2) {Patient 4};
+		\node[meta box,xshift = -1.5cm, below=1.5 of patient2_2]
+		(patient3_3) {Patient 5};
+		\node[meta box,xshift = 1.5cm, below=1.5 of patient2_2]
+		(patient3_4) {Patient 6};
+	\end{scope}
+
+	% arrowed lines
+	\path[arrows={->[scale=1.1]}, thick]
+	(patient1)  edge(none)
+	(patient2)  edge(patient3)
+	(patient3)  edge(patient4)
+	(patient1_1)edge(patient2_1)
+	(patient1_1)edge(patient2_2)
+	(patient2_1)edge(patient3_1)
+	(patient2_1)edge(patient3_2)
+	(patient2_2)edge(patient3_3)
+	(patient2_2)edge(patient3_4);
+	% frames
+	\node[
+		fit=(start1)(patient1)(none),
+		label={[gray, anchor=south]north west:1}] {};
+	\node[
+		fit=(start2)(patient2)(patient3)(patient4),
+		label={[gray, anchor=south]north west:2}] {};
+	\node[
+		fit=(start3)(patient1_1)(patient2_1)(patient2_2)
+		(patient3_1)(patient3_2)(patient3_3)(patient3_4),
+		label={[gray, anchor=south]north west:3}] {};
+\end{tikzpicture}
+
+\clearpage
+\begin{tikzpicture}[font=\LARGE, node font=\LARGE]
+	%% rectangles
+	\node[punkt, wider=1, higher=1]
+	(start) {程序后端};
+	\node[punkt, wider=1, higher= 1,below=3 of start]
+	(S) {编码器};
+	\node[punkt, wider=1, higher= 1,below=15 of S]
+	(S) {编码器};
+
+	\begin{scope}[xshift=18cm]
+		\node[punkt, wider=1, higher=1]
+		(equation5) {程序前端};
+		\node[punkt, wider=1, higher=1, below=3 of equation5]
+		(equation1) {电机};
+	\end{scope}
+
+
+	% %% arrowed lines
+	\path[arrows={->[scale=1.1]}, thick]
+	% (E)         edge (pool)
+	(start)      edge ["发送指令"](S)
+	(S)          edge ["接收数据"](start)
+	(start)      edge ["程序登录、电机连接、工作状态、纪念币接收"](equation5)
+	(equation5)          edge ["印花图案选择、消息接收的确认"](start)
+	(S)          edge ["编码器驱动电机"](equation1)
+	(equation1)  edge ["电机提供编码器数据"](S);
+
+\end{tikzpicture}
+\end{document}

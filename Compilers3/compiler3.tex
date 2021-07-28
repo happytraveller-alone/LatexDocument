@@ -1,0 +1,123 @@
+\documentclass{article}
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage[fleqn]{amsmath}
+\usepackage[cs4size,UTF8,winfonts,heading=true]{ctex}
+\usepackage{tikz,pgfkeys,pgf,pgfplots}
+\usepackage{times}
+\usepackage{floatrow}
+\usepackage[labelfont=bf,labelsep=quad]{caption}
+\setlength{\parindent}{4em}
+\addtolength{\parskip}{3pt}
+\usepackage[compact]{titlesec}         % you need this package
+\titlespacing*{\subsection}{0pt}{0pt}{0pt} % this reduces space between (sub)sections to 0pt, for example
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+\headheight=13pt
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{网络安全一班} % Top left header
+\chead{\hmwkTitle} % Top center head
+\rhead{3019244283 谢远峰 } % Top right header
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+\renewcommand{\normalsize}{\fontsize{12pt}{\baselineskip}\selectfont}
+
+%--Edit Title, Author and Date here
+\newcommand{\hmwkTitle}{编译原理-语法分析} % Assignment title
+\newcommand{\hmwkClassTime}{\today} % Class/lecture time
+\newcommand{\hmwkAuthorName}{网安一班\ 3019244283\ 谢远峰 } % Your name
+
+
+\title{
+\vspace{2in}
+\Huge{\textbf{\hmwkTitle}}\\
+\vspace{2.5in}
+}
+\author{\textbf{\hmwkAuthorName}}
+\date{\hmwkClassTime}
+
+%------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+\newpage
+\noindent
+考虑文法$G_{2}[S]:\quad S \rightarrow a|\&|(  \qquad T \rightarrow TS|S $\\
+(1)消除$G_2$左递归，得到（不含左递归）的$G_2^{'}$文法\\
+(2)\ $G_2^{'}$是不是LL(1)的？如果是，给出证明，如果不是，将其改造成LL(1)的\\
+(3)给出$G_2^{'}$的预测分析表\\
+(4)给出符号串(a\&a)的预测分析表\\ \\
+\noindent
+(1)
+\begin{gather}
+    S \rightarrow a|\&|( \\
+    T \rightarrow aT^{'}|\&T^{'}|(T)T^{'}\\
+    T^{'} \rightarrow aT^{'}|\&T^{'}|(T)T^{'}|\varepsilon
+\end{gather}
+(2)\ $G_2^{'}$是LL(1)的,证明如下：
+
+$\bullet $文法不含有左递归\\
+
+$\bullet $对于文法中每一个非终结符 A 的各个产生式的候选首符集两两不相交
+
+$FIRST(a)=\{a\}\neq FIRST(\&)=\{\&\}\neq FIRST((T))=\{(\}$
+
+$FIRST(aT^{'})=\{a\}\neq FIRST(\&T^{'})=\{\&\}\neq FIRST((T)T^{'})=\{(\}$
+
+$FIRST(aT^{'})=\{a\}\neq FIRST(\&T^{'})=\{\&\}\neq FIRST((T)T^{'})=\{(\}\neq FIRST(\varepsilon)$\\
+
+$\bullet $对文法中的每个非终结符A ，若它存在某个候选首符集包含ε，则FIRST(A)∩FOLLOW(A)=Φ
+
+$FIRST(T^{'})=\{a,\&,(,\varepsilon\}\bigcap FOLLOW(T^{'})=\{)\}=\phi $\\
+(3)\\
+FIRST SET:
+
+$FIRST(a)=\{a\};FIRST(\&)=\{\&\};FIRST((T))=\{(\};FIRST(\varepsilon)=\{\varepsilon \};$
+
+$FIRST(\&T^{'})=\{\&\};FIRST((T)T^{'})=\{(\};FIRST(aT^{'})=\{a\};$
+
+$FIRST(S)=\{a,\&,(\};FIRST(T)=\{a,\&,(\};FIRST(T^{'})=\{a,\&,(,\varepsilon \}$\\
+FOLLOW SET:
+
+$FOLLOW(S)=\{\# \};FOLLOW(T)=\{\#,)\};FOLLOW(T^{'})=\{\#,)\}$
+\begin{center}
+    \begin{tabular}[h]{|c|c|c|c|c|c|}\hline
+        ~       & a                          & \&                          & (                            & )                               & \#                              \\\hline
+        S       & $S \rightarrow a$          & $S \rightarrow \&$          & $S \rightarrow (T)$          & ~                               & ~                               \\\hline
+        T       & $T \rightarrow aT^{'}$     & $T \rightarrow \&T^{'}$     & $T \rightarrow (T)T^{'}$     & ~                               & ~                               \\\hline
+        $T^{'}$ & $T^{'} \rightarrow aT^{'}$ & $T^{'} \rightarrow \&T^{'}$ & $T^{'} \rightarrow (T)T^{'}$ & $T^{'} \rightarrow \varepsilon$ & $T^{'} \rightarrow \varepsilon$ \\\hline
+    \end{tabular}
+\end{center}
+\newpage
+(4)
+\begin{center}
+    \begin{tabular}{|c|c|c|c|}\hline
+        步骤 & 符号栈      & 输入串   & 所用产生式                      \\\hline
+        0    & $\#S$       & $(a\&a)$ &                                 \\\hline
+        1    & $\#)T($     & $(a\&a)$ & $S \rightarrow (T)$             \\\hline
+        2    & $\#)T$      & $a\&a)$  &                                 \\\hline
+        3    & $\#T^{'}a$  & $a\&a)$  & $T \rightarrow aT^{'}$          \\\hline
+        4    & $\#T^{'}$   & $\&a)$   &                                 \\\hline
+        5    & $\#T^{'}\&$ & $\&a)$   & $T^{'} \rightarrow \&T^{'}$     \\\hline
+        6    & $\#T^{'}$   & $a)$     &                                 \\\hline
+        7    & $\#T^{'}a$  & $a)$     & $T^{'} \rightarrow aT^{'}$      \\\hline
+        8    & $\#T^{'}$   & $)$      &                                 \\\hline
+        9    & $\#)$       & $)$      & $T^{'} \rightarrow \varepsilon$ \\\hline
+        10   & $\#$        & $\#$     & ~                               \\\hline
+    \end{tabular}
+\end{center}
+\end{document}

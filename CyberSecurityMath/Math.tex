@@ -1,0 +1,54 @@
+\documentclass[UTF8,fleqn]{article}
+\usepackage[UTF8]{ctex}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+
+\pagestyle{fancy}
+\lhead{网络安全一班} % Top left header
+\chead{\hmwkClass\ \hmwkTitle} % Top center head
+\rhead{3019244283 谢远峰 } % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{第\ \thepage\ 页} % Bottom center footer
+% \rfoot{第\ \thepage\ 页} % Bottom right footer
+\newcommand{\hmwkTitle}{信息安全数学基础} % Assignment title
+\newcommand{\hmwkClass}{} % Course/class
+\large
+\title{Homework1}
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \line(1,0){300}\\
+        [0.65cm]
+        \huge{\bfseries Homework I }\\
+        \line(1,0){300}\\
+        % \textsc{\Large Chapter 1}\\
+        \textnormal{\Large \today}\\
+        [5.5cm]
+    \end{center}
+    \begin{flushright}
+        \texttt{\Large 谢远峰\\网安一班\\3019244283}\\
+        [0.5cm]
+    \end{flushright}
+\end{titlepage}
+
+% \begin{document}
+
+% \end{document}
+\section*{习题1}
+\noindent
+求$2021^{365}$十进制下的十位数 \\
+\begin{align*}
+    \text{对任意数}n                  & ={p_1}^{\alpha_{1}}{p_2}^{\alpha_{2}}\cdots{p_n}^{\alpha_{n}}    \\
+    \varphi(n)                        & =n( 1-\frac{1}{p_1} )( 1-\frac{1}{p_2} )\cdots( 1-\frac{1}{p_n}) \\
+    \varphi(100)                      & =100*( 1-\frac{1}{2} )( 1-\frac{1}{5} )=40                       \\
+    \text{由欧拉定理}\a^{\varphi_{m}} & \equiv 1(mod\ m)                                                 \\
+    2021^{365}                        & \equiv 21^{365} (mod\ 100)                                       \\
+                                      & \equiv (21^{40})^{9} * 21^5 (mod\ 100)                           \\
+                                      & \equiv (21^5) (mod\ 100)                                         \\
+                                      & \equiv 4084101 (mod\ 100)                                        \\
+    \text{该数十位为0}
+\end{align*}
+\end{document}

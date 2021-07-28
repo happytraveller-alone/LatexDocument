@@ -1,0 +1,52 @@
+\documentclass[UTF8,fleqn]{article}
+\usepackage[UTF8]{ctex}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage[fleqn]{amsmath}
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+
+\pagestyle{fancy}
+\lhead{网络安全一班} % Top left header
+\chead{\hmwkClass\ \hmwkTitle} % Top center head
+\rhead{3019244283 谢远峰 } % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{第\ \thepage\ 页} % Bottom center footer
+% \rfoot{第\ \thepage\ 页} % Bottom right footer
+\newcommand{\hmwkTitle}{信息安全数学基础} % Assignment title
+\newcommand{\hmwkClass}{} % Course/class
+\large
+\title{Homework1}
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \line(1,0){300}\\
+        [0.65cm]
+        \huge{\bfseries Homework II }\\
+        \line(1,0){300}\\
+        % \textsc{\Large Chapter 1}\\
+        \textnormal{\Large \today}\\
+        [5.5cm]
+    \end{center}
+    \begin{flushright}
+        \texttt{\Large 谢远峰\\网安一班\\3019244283}\\
+        [0.5cm]
+    \end{flushright}
+\end{titlepage}
+
+% \begin{document}
+
+% \end{document}
+\section*{习题1}
+证明：如果素数p=4n+1,且d|n,则$\bigg{(}\frac{d}{p}\bigg{)}$  \\
+\begin{align*}
+    \begin{split}
+        (d,p)=1 \rightarrow &d^{p-1}\equiv 1(mod\ p) \qquad \text{费马小定理}\\
+        \rightarrow &d^{4n}\equiv 1(mod\ p)\\
+        \rightarrow &(d^{2n})^{2}\equiv 1^2(mod\ p)\qquad \text{同余性质}\\
+        \rightarrow &d^{2n}\equiv 1(mod\ p)\\
+        \rightarrow &d^{\frac{p-1}{2}}\equiv 1(mod\ p)\qquad \text{二次剩余理论}\\
+    \end{split}
+\end{align*}
+\qquad d是模p的二次剩余，所以$\bigg{(}\frac{d}{p}\bigg{)}$
+\end{document}
